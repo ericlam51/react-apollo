@@ -15,21 +15,16 @@
     "test-watch": "jest --watch",
     "posttest": "npm run lint && npm run type-check",
     "filesize": "npm run compile:browser && bundlesize",
-    "type-check":
-      "tsc ./test/typescript.ts --noEmit --jsx react --noEmitOnError --lib es6,dom --experimentalDecorators",
+    "type-check": "tsc ./test/typescript.ts --noEmit --jsx react --noEmitOnError --lib es6,dom --experimentalDecorators",
     "compile": "tsc",
-    "bundle":
-      "rollup -c && rollup -c rollup.browser.config.js && rollup -c rollup.test-utils.config.js",
-    "compile:browser":
-      "rm -rf ./dist && mkdir ./dist && NODE_ENV=production browserify ./lib/react-apollo.browser.umd.js --i graphql-tag --i react --i apollo-client -o=./dist/index.js && npm run minify:browser && npm run compress:browser",
-    "minify:browser":
-      "uglifyjs --compress dead_code=true,unused=true -m -o ./dist/index.min.js -- ./dist/index.js",
+    "bundle": "rollup -c && rollup -c rollup.browser.config.js && rollup -c rollup.test-utils.config.js",
+    "compile:browser": "rm -rf ./dist && mkdir ./dist && NODE_ENV=production browserify ./lib/react-apollo.browser.umd.js --i graphql-tag --i react --i apollo-client -o=./dist/index.js && npm run minify:browser && npm run compress:browser",
+    "minify:browser": "uglifyjs --compress dead_code=true,unused=true -m -o ./dist/index.min.js -- ./dist/index.js",
     "compress:browser": "./scripts/gzip.js --file=./dist/index.min.js",
     "watch": "tsc -w",
     "lint": "tslint 'src/*.ts*' --type-check -p tsconfig.json",
     "lint-staged": "lint-staged",
-    "lint-fix":
-      "prettier --trailing-comma all --single-quote --write \"{src,test}/**/*.ts*\"",
+    "lint-fix": "prettier --trailing-comma all --single-quote --write \"{src,test}/**/*.ts*\"",
     "postcompile": "npm run bundle",
     "prepublishOnly": "npm run compile"
   },
@@ -44,7 +39,10 @@
       "prettier --trailing-comma all --single-quote --write",
       "git add"
     ],
-    "*.js*": ["prettier --trailing-comma all --single-quote --write", "git add"]
+    "*.js*": [
+      "prettier --trailing-comma all --single-quote --write",
+      "git add"
+    ]
   },
   "pre-commit": "lint-staged",
   "repository": {
@@ -62,7 +60,9 @@
   ],
   "author": "James Baxley <james@meteor.com>",
   "babel": {
-    "presets": ["react-native"]
+    "presets": [
+      "react-native"
+    ]
   },
   "jest": {
     "preset": "jest-react-native",
@@ -70,15 +70,25 @@
     "transform": {
       ".*": "./preprocessor.js"
     },
-    "moduleFileExtensions": ["ts", "tsx", "js", "json"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
     "modulePathIgnorePatterns": [
       "<rootDir>/examples",
       "<rootDir>/test/flow.js",
       "<rootDir>/test/typescript.ts"
     ],
-    "projects": ["<rootDir>", "<rootDir>/examples/*"],
+    "projects": [
+      "<rootDir>",
+      "<rootDir>/examples/*"
+    ],
     "testRegex": "(/test/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "setupFiles": ["<rootDir>/scripts/tests.js"]
+    "setupFiles": [
+      "<rootDir>/scripts/tests.js"
+    ]
   },
   "license": "MIT",
   "peerDependencies": {
@@ -154,9 +164,11 @@
     "zen-observable-ts": "^0.4.4"
   },
   "dependencies": {
+    "@types/lodash-es": "^4.17.0",
     "apollo-link": "^1.0.0",
     "hoist-non-react-statics": "^2.2.0",
     "invariant": "^2.2.1",
+    "lodash-es": "^4.17.4",
     "lodash.flowright": "^3.5.0",
     "lodash.pick": "^4.4.0",
     "prop-types": "^15.5.8"
